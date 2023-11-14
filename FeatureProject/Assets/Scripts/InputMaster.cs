@@ -222,6 +222,34 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""CoinToss"",
+            ""id"": ""8522d2dc-9a50-4ecd-86ba-83916b1ec161"",
+            ""actions"": [
+                {
+                    ""name"": ""TossCoin"",
+                    ""type"": ""Button"",
+                    ""id"": ""b2d8fa31-b94f-4a51-910c-5dc0d9e7e19a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""c3a8e82d-0c31-4af1-b3af-b1761fc1ed0f"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TossCoin"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -237,6 +265,9 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
         m_CameraLook = asset.FindActionMap("CameraLook", throwIfNotFound: true);
         m_CameraLook_MouseX = m_CameraLook.FindAction("MouseX", throwIfNotFound: true);
         m_CameraLook_MouseY = m_CameraLook.FindAction("MouseY", throwIfNotFound: true);
+        // CoinToss
+        m_CoinToss = asset.FindActionMap("CoinToss", throwIfNotFound: true);
+        m_CoinToss_TossCoin = m_CoinToss.FindAction("TossCoin", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -426,6 +457,52 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
         }
     }
     public CameraLookActions @CameraLook => new CameraLookActions(this);
+
+    // CoinToss
+    private readonly InputActionMap m_CoinToss;
+    private List<ICoinTossActions> m_CoinTossActionsCallbackInterfaces = new List<ICoinTossActions>();
+    private readonly InputAction m_CoinToss_TossCoin;
+    public struct CoinTossActions
+    {
+        private @InputMaster m_Wrapper;
+        public CoinTossActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
+        public InputAction @TossCoin => m_Wrapper.m_CoinToss_TossCoin;
+        public InputActionMap Get() { return m_Wrapper.m_CoinToss; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CoinTossActions set) { return set.Get(); }
+        public void AddCallbacks(ICoinTossActions instance)
+        {
+            if (instance == null || m_Wrapper.m_CoinTossActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_CoinTossActionsCallbackInterfaces.Add(instance);
+            @TossCoin.started += instance.OnTossCoin;
+            @TossCoin.performed += instance.OnTossCoin;
+            @TossCoin.canceled += instance.OnTossCoin;
+        }
+
+        private void UnregisterCallbacks(ICoinTossActions instance)
+        {
+            @TossCoin.started -= instance.OnTossCoin;
+            @TossCoin.performed -= instance.OnTossCoin;
+            @TossCoin.canceled -= instance.OnTossCoin;
+        }
+
+        public void RemoveCallbacks(ICoinTossActions instance)
+        {
+            if (m_Wrapper.m_CoinTossActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ICoinTossActions instance)
+        {
+            foreach (var item in m_Wrapper.m_CoinTossActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_CoinTossActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public CoinTossActions @CoinToss => new CoinTossActions(this);
     public interface IMovementActions
     {
         void OnForward(InputAction.CallbackContext context);
@@ -438,5 +515,9 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
     {
         void OnMouseX(InputAction.CallbackContext context);
         void OnMouseY(InputAction.CallbackContext context);
+    }
+    public interface ICoinTossActions
+    {
+        void OnTossCoin(InputAction.CallbackContext context);
     }
 }

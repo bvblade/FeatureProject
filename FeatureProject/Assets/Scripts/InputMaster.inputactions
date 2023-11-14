@@ -200,6 +200,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "CoinToss",
+            "id": "8522d2dc-9a50-4ecd-86ba-83916b1ec161",
+            "actions": [
+                {
+                    "name": "TossCoin",
+                    "type": "Button",
+                    "id": "b2d8fa31-b94f-4a51-910c-5dc0d9e7e19a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c3a8e82d-0c31-4af1-b3af-b1761fc1ed0f",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TossCoin",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
