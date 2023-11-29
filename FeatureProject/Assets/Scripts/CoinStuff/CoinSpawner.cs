@@ -9,6 +9,9 @@ public class CoinSpawner : MonoBehaviour
     public Rigidbody coinPrefab;
 
     public float speed;
+
+    public AudioSource CoinSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +21,7 @@ public class CoinSpawner : MonoBehaviour
     void tossCoin()
     {
         Rigidbody coin = Instantiate(coinPrefab);
+        CoinSound.Play();
         coin.transform.position = transform.position;
         coin.AddForce(transform.forward * speed);
     }

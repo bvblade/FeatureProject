@@ -2,22 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinScript : MonoBehaviour
+public class BulletScript : MonoBehaviour
 {
+    private void Awake()
+    {
+        Destroy(this.gameObject, 1);
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == ("Ground"))
+        if(collision.gameObject.tag == "Coin")
         {
             Destroy(this.gameObject);
         }
 
-        if (collision.gameObject.tag == "Bullet")
+        if (collision.gameObject.tag == "Ground")
         {
-            Debug.Log("Coin Hit");
             Destroy(this.gameObject);
-            //instantiate new bullet that will hit enemies
-
         }
     }
 }

@@ -250,6 +250,34 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Shoot"",
+            ""id"": ""cf81fdfd-0375-4b1b-8628-04c2757ec250"",
+            ""actions"": [
+                {
+                    ""name"": ""shootBullet"",
+                    ""type"": ""Button"",
+                    ""id"": ""7d2a202a-8493-4d8b-9988-2f4540f80c5a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""b88d102c-7cd8-4711-b39e-2bc2d1ae04dc"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""shootBullet"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -268,6 +296,9 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
         // CoinToss
         m_CoinToss = asset.FindActionMap("CoinToss", throwIfNotFound: true);
         m_CoinToss_TossCoin = m_CoinToss.FindAction("TossCoin", throwIfNotFound: true);
+        // Shoot
+        m_Shoot = asset.FindActionMap("Shoot", throwIfNotFound: true);
+        m_Shoot_shootBullet = m_Shoot.FindAction("shootBullet", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -503,6 +534,52 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
         }
     }
     public CoinTossActions @CoinToss => new CoinTossActions(this);
+
+    // Shoot
+    private readonly InputActionMap m_Shoot;
+    private List<IShootActions> m_ShootActionsCallbackInterfaces = new List<IShootActions>();
+    private readonly InputAction m_Shoot_shootBullet;
+    public struct ShootActions
+    {
+        private @InputMaster m_Wrapper;
+        public ShootActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
+        public InputAction @shootBullet => m_Wrapper.m_Shoot_shootBullet;
+        public InputActionMap Get() { return m_Wrapper.m_Shoot; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ShootActions set) { return set.Get(); }
+        public void AddCallbacks(IShootActions instance)
+        {
+            if (instance == null || m_Wrapper.m_ShootActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ShootActionsCallbackInterfaces.Add(instance);
+            @shootBullet.started += instance.OnShootBullet;
+            @shootBullet.performed += instance.OnShootBullet;
+            @shootBullet.canceled += instance.OnShootBullet;
+        }
+
+        private void UnregisterCallbacks(IShootActions instance)
+        {
+            @shootBullet.started -= instance.OnShootBullet;
+            @shootBullet.performed -= instance.OnShootBullet;
+            @shootBullet.canceled -= instance.OnShootBullet;
+        }
+
+        public void RemoveCallbacks(IShootActions instance)
+        {
+            if (m_Wrapper.m_ShootActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IShootActions instance)
+        {
+            foreach (var item in m_Wrapper.m_ShootActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_ShootActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public ShootActions @Shoot => new ShootActions(this);
     public interface IMovementActions
     {
         void OnForward(InputAction.CallbackContext context);
@@ -519,5 +596,9 @@ public partial class @InputMaster: IInputActionCollection2, IDisposable
     public interface ICoinTossActions
     {
         void OnTossCoin(InputAction.CallbackContext context);
+    }
+    public interface IShootActions
+    {
+        void OnShootBullet(InputAction.CallbackContext context);
     }
 }
