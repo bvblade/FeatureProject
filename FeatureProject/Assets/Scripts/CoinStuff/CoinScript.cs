@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CoinScript : MonoBehaviour
 {
+    public Rigidbody bulletRicPrefab;
+   
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -15,9 +17,11 @@ public class CoinScript : MonoBehaviour
         if (collision.gameObject.tag == "Bullet")
         {
             Debug.Log("Coin Hit");
-            Destroy(this.gameObject);
             //instantiate new bullet that will hit enemies
-
+            GameObject bulletInstance = Instantiate(bulletRicPrefab).gameObject;
+            bulletInstance.transform.position = this.transform.position;
+            Debug.Log("bullet instantiated");
+            Destroy(this.gameObject);
         }
     }
 }

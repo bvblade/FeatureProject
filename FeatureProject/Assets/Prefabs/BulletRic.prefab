@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4273930316318938317
+--- !u!1 &8056902050585741961
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,50 +8,50 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3836188563561521129}
-  - component: {fileID: 6164575904104341407}
-  - component: {fileID: 5293409962333358528}
-  - component: {fileID: 1518443367526417320}
-  - component: {fileID: 8801193787571299155}
-  - component: {fileID: 8817264222896870264}
-  - component: {fileID: 1333463073046959585}
+  - component: {fileID: 5138099236608959768}
+  - component: {fileID: 8933813407918823874}
+  - component: {fileID: 4212893336047875800}
+  - component: {fileID: 3664601535561238974}
+  - component: {fileID: 4697038589807533565}
+  - component: {fileID: -5750789382059163153}
+  - component: {fileID: 7467651470584134670}
   m_Layer: 0
-  m_Name: Coin
-  m_TagString: Coin
+  m_Name: BulletRic
+  m_TagString: BulletRic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3836188563561521129
+--- !u!4 &5138099236608959768
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4273930316318938317}
+  m_GameObject: {fileID: 8056902050585741961}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.15111299, y: 0.01698359, z: 0.15111299}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12.748931, y: 6.8808365, z: 19.006107}
+  m_LocalScale: {x: 0.06516094, y: 0.06516094, z: 0.06516094}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!33 &6164575904104341407
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &8933813407918823874
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4273930316318938317}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &5293409962333358528
+  m_GameObject: {fileID: 8056902050585741961}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &4212893336047875800
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4273930316318938317}
+  m_GameObject: {fileID: 8056902050585741961}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ddc90de0a7e055a4895850f9cf86f55c, type: 2}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -87,27 +87,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1518443367526417320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4273930316318938317}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 335bcdd2089478048af9b429b0cfc8ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletRicPrefab: {fileID: 4697038589807533565, guid: 94b2f9ebb4cfc914faa8c25d8f67c761,
-    type: 3}
---- !u!135 &8801193787571299155
+--- !u!135 &3664601535561238974
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4273930316318938317}
+  m_GameObject: {fileID: 8056902050585741961}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -120,15 +106,15 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 6.470371
-  m_Center: {x: 0, y: -0.3184946, z: -2.4760414e-16}
---- !u!54 &8817264222896870264
+  m_Radius: 3.5557644
+  m_Center: {x: 0, y: 0.19817802, z: 0.039328575}
+--- !u!54 &4697038589807533565
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4273930316318938317}
+  m_GameObject: {fileID: 8056902050585741961}
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
@@ -144,19 +130,32 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!96 &1333463073046959585
+--- !u!114 &-5750789382059163153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8056902050585741961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ce1b1efd9c3c8849ad651e3d3677308, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSpeed: 50
+--- !u!96 &7467651470584134670
 TrailRenderer:
   serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4273930316318938317}
+  m_GameObject: {fileID: 8056902050585741961}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -191,8 +190,8 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 5
-  m_PreviewTimeScale: 1
+  m_Time: 0.3
+  m_PreviewTimeScale: 0
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -200,30 +199,21 @@ TrailRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.0054054055
-        value: 0.26388824
+        time: 0
+        value: 0.13888931
         inSlope: 0
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 0.44705883}
+      key0: {r: 1, g: 0.6458118, b: 0, a: 1}
+      key1: {r: 1, g: 0.6458118, b: 0, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -246,7 +236,7 @@ TrailRenderer:
       atime5: 0
       atime6: 0
       atime7: 0
-      m_Mode: 0
+      m_Mode: 1
       m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
